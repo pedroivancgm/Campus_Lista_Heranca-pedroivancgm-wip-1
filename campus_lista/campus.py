@@ -3,7 +3,7 @@ from .curso import Curso
 from .monitor import Monitor
 
 class Campus:
-    _id_aluno = 1  # matrícula crescente para o sistema inteiro
+    _id_aluno = 1  #matrícula crescente para o sistema inteiro
 
     def __init__(self, nome: str):
         self.nome = nome
@@ -44,13 +44,15 @@ class Campus:
 
     def cadastrar_monitor(self, matricula, disciplina, horarios):
         aluno = self.procurar_aluno(matricula)
+        indice = self.alunos.index(aluno)
 
         if aluno is None:
             print("Aluno não encontrado.")
             return
 
         monitor = Monitor(aluno, disciplina, horarios)
-        self.monitores.append(monitor)
+        self.alunos.pop(indice)
+        self.alunos.insert(indice, monitor)
 
         print(f"Monitor {monitor.nome} cadastrado com sucesso!\n")
 
@@ -97,12 +99,19 @@ class Campus:
         print("Aluno removido.")
 
     def listar_alunos(self):
+        i = 0
         if not self.alunos:
             print("Nenhum aluno cadastrado.")
             return
 
         for aluno in self.alunos:
-            print(f"Matrícula: {aluno.matricula} | Nome: {aluno.nome} | Curso: {aluno.curso}")
+            if isinstance(aluno,Monitor):
+                print(f"Matrícula: {aluno.matricula} /  Nome: {aluno.nome} / Curso: {aluno.curso} / Monitoria: {aluno.disciplinaEnsinada}")
+                i+=1
+
+            else:
+
+                print(f"Matrícula: {aluno.matricula} / Nome: {aluno.nome} / Curso: {aluno.curso}")
 
 
     def transferir_para(self, matricula: int, destino):
