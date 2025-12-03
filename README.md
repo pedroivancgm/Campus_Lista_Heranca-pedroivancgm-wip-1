@@ -27,3 +27,5 @@ Para testar isso, siga esse passo a passo:\
 5 - liste novamente os aluno e veja o que mudou.
 
 OBS: Quando há a pergunta sobre os horários disponíveis, o código espera uma string, ou seja, digite uma frase como "das 13:00 às 15:00 nas quartas-feiras"
+
+O código foi aprimorado com a ajuda do ChatGPT
